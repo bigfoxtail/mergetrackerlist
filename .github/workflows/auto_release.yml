@@ -1,0 +1,47 @@
+name: Auto Clean Trackers and Release
+
+# 触发条件配置
+on:
+  schedule:
+    - cron: '0 0 * * *'  # 每天国际标准时间 00:00 (北京时间早上 8:00) 自动执行一次
+  workflow_dispatch:     # 允许你在 GitHub 页面上手动点击按钮立即触发执行
+
+jobs:
+  build_and_release:
+    runs-on: ubuntu-latest
+    
+    # 授予工作流向 Release 写入和发布文件的权限
+    permissions:
+      contents: write
+
+    steps:
+    # 1. 拉取仓库代码
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    # 2. 准备 Python 环境
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.10'
+
+    # 3. 执行脚本，生成最新的 trackers.txt 文件
+    - name: Run script
+      run: python clean_trackers.py
+
+    # 4. 获取当前时间戳作为 Release 的版本号（动态 tag）
+    - name: Get current date
+      id: date
+      run: echo "date=$(date +'%Y.%m.%d-%H%M')" >> $GITHUB_OUTPUT
+
+    # 5. 发布文件到 GitHub Release
+    - name: Create Release and Upload Asset
+      uses: softprops/action-gh-release@v2
+      with:
+        tag_name: v${{ steps.date.outputs.date }}
+        name: Tracker List Updated (${{ steps.date.outputs.date }})
+        body: |
+          🤖 自动任务执行成功！
+        draft: false
+        prerelease: false
+        files: all_trackers_list.txt
