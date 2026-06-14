@@ -35,6 +35,9 @@ jobs:
     - name: Run script
       run: python merge_tracker_list.py
 
+    - name: Run script
+      run: python tracker_checker.py
+
     # 4. 获取当前时间戳作为 Release 的版本号（动态 tag）
     - name: Get current date
       id: date
@@ -42,7 +45,7 @@ jobs:
 
     # 5. 发布文件到 GitHub Release
     - name: Create Release and Upload Asset
-      uses: softprops/action-gh-release@v2
+      uses: softprops/action-gh-release@v3
       with:
         tag_name: v${{ steps.date.outputs.date }}
         name: Tracker List Updated (${{ steps.date.outputs.date }})
