@@ -57,7 +57,7 @@ def download_trackerslist():
         )
         final_text = "\n\n".join(clean_lines) + "\n\n"
         f.write(final_text)
-        print(f"成功生成去重文件")
+        print(f"成功生成全部去重文件，共{len(clean_lines)}条")
 
 
 def download_bset_trackerslist():
@@ -114,7 +114,7 @@ def download_bset_trackerslist():
         )
         final_text = "\n\n".join(clean_lines) + "\n\n"
         f.write(final_text)
-        print(f"成功生成去重文件")
+        print(f"成功生成去重文件，共{len(clean_lines)}条")
 
 
 if __name__ == '__main__':
