@@ -18,6 +18,10 @@ def download_trackerslist():
     if res.status_code == 200:
         all_trackers_list = all_trackers_list + "\n" + res.text
 
+    res = requests.get('https://down.adysec.com/trackers_all.txt')
+    if res.status_code == 200:
+        all_trackers_list = all_trackers_list + "\n" + res.text
+
     res = requests.get(
         'https://raw.githubusercontent.com/hezhijie0327/Trackerslist/refs/heads/main/trackerslist_combine.txt')
     if res.status_code == 200:
@@ -68,6 +72,10 @@ def download_bset_trackerslist():
         all_trackers_list = all_trackers_list + "\n" + res.text
 
     res = requests.get('https://raw.githubusercontent.com/ngosang/trackerslist/master/trackers_best_ip.txt')
+    if res.status_code == 200:
+        all_trackers_list = all_trackers_list + "\n" + res.text
+
+    res = requests.get('https://down.adysec.com/trackers_best.txt')
     if res.status_code == 200:
         all_trackers_list = all_trackers_list + "\n" + res.text
 
