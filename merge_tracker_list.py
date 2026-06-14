@@ -19,6 +19,11 @@ def download_trackerslist():
         all_trackers_list = all_trackers_list + "\n" + res.text
 
     res = requests.get(
+        'https://raw.githubusercontent.com/hezhijie0327/Trackerslist/refs/heads/main/trackerslist_combine.txt')
+    if res.status_code == 200:
+        all_trackers_list = all_trackers_list + "\n" + res.text
+
+    res = requests.get(
         'https://newtrackon.com/api/stable?include_ipv4_only_trackers=1&include_ipv6_only_trackers=1&min_age_days=0')
     if res.status_code == 200:
         all_trackers_list = all_trackers_list + "\n" + res.text
@@ -63,6 +68,11 @@ def download_bset_trackerslist():
         all_trackers_list = all_trackers_list + "\n" + res.text
 
     res = requests.get('https://raw.githubusercontent.com/ngosang/trackerslist/master/trackers_best_ip.txt')
+    if res.status_code == 200:
+        all_trackers_list = all_trackers_list + "\n" + res.text
+
+    res = requests.get(
+        'https://raw.githubusercontent.com/hezhijie0327/Trackerslist/refs/heads/main/trackerslist_tracker.txt')
     if res.status_code == 200:
         all_trackers_list = all_trackers_list + "\n" + res.text
 
