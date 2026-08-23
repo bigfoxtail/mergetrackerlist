@@ -10,11 +10,19 @@ def download_trackerslist():
     if res.status_code == 200:
         all_trackers_list = all_trackers_list + "\n" + res.text
 
+    res = requests.get('https://tracker.adysec.com/trackers_all.txt')
+    if res.status_code == 200:
+        all_trackers_list = all_trackers_list + "\n" + res.text
+
     res = requests.get('https://raw.githubusercontent.com/ngosang/trackerslist/master/trackers_all.txt')
     if res.status_code == 200:
         all_trackers_list = all_trackers_list + "\n" + res.text
 
     res = requests.get('https://raw.githubusercontent.com/ngosang/trackerslist/master/trackers_all_ip.txt')
+    if res.status_code == 200:
+        all_trackers_list = all_trackers_list + "\n" + res.text
+
+    res = requests.get('https://raw.githubusercontent.com/Tunglies/TrackersList/main/all.txt')
     if res.status_code == 200:
         all_trackers_list = all_trackers_list + "\n" + res.text
 
@@ -67,11 +75,19 @@ def download_bset_trackerslist():
     if res.status_code == 200:
         all_trackers_list = all_trackers_list + "\n" + res.text
 
+    res = requests.get('https://tracker.adysec.com/trackers_best.txt')
+    if res.status_code == 200:
+        all_trackers_list = all_trackers_list + "\n" + res.text
+
     res = requests.get('https://raw.githubusercontent.com/ngosang/trackerslist/master/trackers_best.txt')
     if res.status_code == 200:
         all_trackers_list = all_trackers_list + "\n" + res.text
 
     res = requests.get('https://raw.githubusercontent.com/ngosang/trackerslist/master/trackers_best_ip.txt')
+    if res.status_code == 200:
+        all_trackers_list = all_trackers_list + "\n" + res.text
+
+    res = requests.get('https://raw.githubusercontent.com/Tunglies/TrackersList/main/all.txt')
     if res.status_code == 200:
         all_trackers_list = all_trackers_list + "\n" + res.text
 
