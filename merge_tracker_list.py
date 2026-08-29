@@ -3,8 +3,16 @@ import re
 import requests
 
 
+def load_base_trackerslist():
+    try:
+        with open('base_trackers_list.txt', 'r', encoding='utf-8') as f:
+            return f.read()
+    except FileNotFoundError:
+        return ''
+
+
 def download_trackerslist():
-    all_trackers_list = ""
+    all_trackers_list = load_base_trackerslist()
 
     res = requests.get('https://cf.trackerslist.com/all.txt')
     if res.status_code == 200:
@@ -69,7 +77,7 @@ def download_trackerslist():
 
 
 def download_bset_trackerslist():
-    all_trackers_list = ""
+    all_trackers_list = load_base_trackerslist()
 
     res = requests.get('https://cf.trackerslist.com/best.txt')
     if res.status_code == 200:
